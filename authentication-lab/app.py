@@ -4,14 +4,14 @@ import pyrebase
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'super-secret-key'
-Confing = {
+confing = {
   "apiKey": "AIzaSyAtAHeUetN4JoURWE11nvoglrd6_dX-Tyc",
   "authDomain": "joelle-example.firebaseapp.com",
   "projectId": "joelle-example",
   "storageBucket": "joelle-example.appspot.com",
   "messagingSenderId": "828567922002",
-  "appId": "1:828567922002:web:9d61695ad2ee0c9adcc68b"
-};
+  "appId": "1:828567922002:web:9d61695ad2ee0c9adcc68b",
+  "databaseURL":""}
 firebase = pyrebase.initialize_app(confing)
 auth = firebase.auth()
 
@@ -36,10 +36,10 @@ def signup():
         password = request.form['password']
         try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
-            return redirect(url_for('add_tweet.html'))
+            return redirect(url_for('add_tweet'))
         except:
             error = "Authentication failed"
-            return render_template("signup.html")
+    return render_template("signup.html")
 
 
 
